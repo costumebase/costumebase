@@ -1,0 +1,63 @@
+
+
+.............................. list of order management ........................... 
+
+1. List of order
+
+2. Details of order
+
+3. list of New order
+
+4. Detail of New order
+
+5. list of my product   ..... add link of old views
+
+6. Detail of my product ..... maybe already created 
+
+...................................................
+
+
+.......................... Order Update .............................
+
+1. create update view for those order
+
+
+.................... simple chart  ................................
+
+
+create a chart which shows income increase or decrace based on week or day ......   
+
+
+.................... library ..............................
+
+postman for messaging
+
+
+.............................................. Index Product Page .......................................
+
+
+1. product model should have field..... bolean field: Featured, special, weekly, flash product
+
+
+2. esty style should be change and category comes from data base...
+
+
+3. NEW Arrival === recent product which are added..
+
+
+4. blog setup for sure, detail of blogs and list of blogs with category for sure..
+
+
+5. Review of product with star ******
+
+
+6. Whishlist of product
+
+
+7. Random Discover Product 12 product per category
+
+8. Discover out item .... in category bolean feild as discover willl have so product list like esty...
+
+9. messaging to the vendor 
+
+10. show the vendor shop down there add to cart

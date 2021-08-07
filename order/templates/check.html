@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+
+<div id="all">
+  <div id="content">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- breadcrumb-->
+          <nav aria-label="breadcrumb">
+         
+          </nav>
+        </div>
+        <div id="checkout" class="col-lg-9">
+          <div class="box">
+
+
+
+            <Form action="" method="post">
+              {% csrf_token %}
+              <div class="col-md-6">
+                  <div class="billing-details">
+          
+                      <div class="section-title">
+                          <h4 class="title">Shipping Details</h4>
+                      </div>
+                      <p><label for="id_first_name">First name:</label>
+
+
+
+
+                          <input type="text" name="first_name" 
+                           value="{{ user.userprofile.first_name }}" class="input"
+                           maxlength="10" required id="id_first_name">
+                        
+                        
+                        
+                        </p>
+                      <p><label for="id_last_name">Last name:</label>
+                          <input type="text" name="last_name"  
+                          value="{{ user.userprofile.last_name }}" class="input" maxlength="10" required id="id_last_name"></p>
+                      <p><label for="id_address">Address:</label>
+
+                          <input type="text" name="address" 
+                          value="{{ user.userprofile.address }}" class="input" maxlength="150" id="id_address"></p>
+
+
+                      <p><label for="id_address_optional">Address Optional:</label>
+
+                          <input type="text" name="address_optional" 
+                          value="{{ user.userprofile.address_optional }}" class="input" maxlength="150" id="id_address_optional"></p>
+
+
+                      <p><label for="id_phone">Phone:</label>
+                          <input type="text" name="phone" 
+                           value="{{ user.userprofile.phone }}"  class="input" maxlength="20" id="id_phone"></p>
+
+
+
+                      <p><label for="id_city">City:</label>
+
+                          <select name="city" class="input" id="id_city">
+                              <option value="{{ profile.city }}" selected>{{ user.userprofile.city }}</option>
+                              <option value="İstanbul">Istanbul</option>
+                              <option value="Ankara">Ankara</option>
+                              <option value="İzmir">Izmir</option>
+                              <option value="Bursa">Bursa</option>
+                              <option value="Konya">Konya</option>
+                              <option value="Yozgat">Yozgat</option>
+                          </select></p>
+
+                      <p><label for="id_first_name">Country :</label>
+                          <input type="text" name="country" class="input" id="id_country" value="{{ user.userprofile.country }}"></p>
+                      <p><label for="id_province">province :</label>
+
+                          <input type="text" name="province" class="input" id="id_country" value="{{ user.userprofile.province }}"></p>
+                      <p><label for="id_zip">zip :</label>
+                          <input type="text" name="zip" class="input" id="id_zip" value="{{ user.userprofile.zip }}"></p>
+
+                          <label for="">Note Order</label>
+
+                          <textarea type="text" name="adminnote" id="id_adminnote" value="{{order.adminnote}}"></textarea>
+
+                      <div class="pull-right">
+                          <button  type="submit" class="primary-btn">Complete Order</button>
+                      </div>
+                  </div>
+              </div>
+          
+      
+          
+          </Form>
+
+
+                </div>
+                <!-- /.box-->
+              </div>
+
+
+
+    
+              <!-- /.col-md-3-->
+    
+        
+
+              </div>
+        </div>
+      </div>
+    </div>
+   
+
+{% endblock content %}

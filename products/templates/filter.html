@@ -1,0 +1,347 @@
+{% load static %}
+{% load mptt_tags %}
+<script type="text/javascript" src="{% static 'js/filter.js' %}"></script>
+
+<div class="col-lg-3 col-md-12">
+    <div class="shop-w-master">
+        <h1 class="shop-w-master__heading u-s-m-b-30"><i class="fas fa-filter u-s-m-r-8"></i>
+
+            <span>FILTERS</span></h1>
+        <div class="shop-w-master__sidebar sidebar--bg-snow">
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">CATEGORY</h1>
+
+                        <span class="fas fa-minus shop-w__toggle" data-target="#s-category" data-toggle="collapse"></span>
+                    </div>
+
+                    <div class="shop-w__wrap collapse show" id="s-category">
+                        <ul class="shop-w__category-list gl-scroll">
+                  
+                              
+                       
+                            {% recursetree category %}
+                            
+                          <li class="has-list">
+
+                            <!-- <input type="checkbox" class="filter" data-filter="category" value="{{cat.category__id}}"> -->
+
+                            <a href="{% url 'product:category-detail' node.slug %}" for="vehicle1"> {{node.name}}</a>
+
+                            <!-- <a href="">{{node.name}}</a> -->
+                        
+                            <span class="category-list__text u-s-m-l-6">({{node.categories.count}})</span>
+
+                            {% if not node.is_leaf_node %}
+                            <span class="js-shop-category-span is-expanded fas fa-plus u-s-m-l-6"></span>
+                             {% endif %}
+                            <ul style="display:block">
+                                {% if not node.is_leaf_node %}
+                                <li class="has-list">
+
+                                    <a href="#">{{children}}</a>
+
+                                    <!-- <span class="js-shop-category-span fas fa-plus u-s-m-l-6"></span> -->
+                                 
+                                </li>                                              
+                                {% endif %}
+                               
+                            </ul>
+                        </li>
+                        {% endrecursetree %}
+
+
+
+          {% comment %}
+                    {% for cat in cats %}
+                      
+                  
+                          <li class="has-list">
+
+                                <input type="checkbox" class="filter" data-filter="category" value="{{cat.category__id}}">
+
+                                <span for="vehicle1"> {{cat.category__name}}</span>
+
+                                <!-- <a href="">{{node.name}}</a> -->
+                            
+                                <span class="category-list__text u-s-m-l-6">({{cat.category_count}})</span>
+
+                                {% if not node.is_leaf_node %}
+                                <span class="js-shop-category-span is-expanded fas fa-plus u-s-m-l-6"></span>
+                                 {% endif %}
+                                <ul style="display:block">
+                                    {% if not node.is_leaf_node %}
+                                    <li class="has-list">
+
+                                        <a href="#">{{children}}</a>
+
+                                        <!-- <span class="js-shop-category-span fas fa-plus u-s-m-l-6"></span> -->
+                                     
+                                    </li>                                              
+                                    {% endif %}
+                                   
+                                </ul>
+                            </li>
+
+
+                            {% endfor %}
+                            {% endcomment %}
+    
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">RATING</h1>
+
+                        <span class="fas fa-minus shop-w__toggle" data-target="#s-rating" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse show" id="s-rating">
+                        <ul class="shop-w__list gl-scroll">
+                            <li>
+                                <div class="rating__check">
+
+                                    <input type="checkbox">
+                                    <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                                </div>
+
+                                <span class="shop-w__total-text">(2)</span>
+                            </li>
+                            <li>
+                                <div class="rating__check">
+
+                                    <input type="checkbox">
+                                    <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i>
+
+                                        <span>& Up</span></div>
+                                </div>
+
+                                <span class="shop-w__total-text">(8)</span>
+                            </li>
+                            <li>
+                                <div class="rating__check">
+
+                                    <input type="checkbox">
+                                    <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+
+                                        <span>& Up</span></div>
+                                </div>
+
+                                <span class="shop-w__total-text">(10)</span>
+                            </li>
+                            <li>
+                                <div class="rating__check">
+
+                                    <input type="checkbox">
+                                    <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+
+                                        <span>& Up</span></div>
+                                </div>
+
+                                <span class="shop-w__total-text">(12)</span>
+                            </li>
+                            <li>
+                                <div class="rating__check">
+
+                                    <input type="checkbox">
+                                    <div class="rating__check-star-wrap"><i class="fas fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i><i class="far fa-star"></i>
+
+                                        <span>& Up</span></div>
+                                </div>
+
+                                <span class="shop-w__total-text">(1)</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">SHIPPING</h1>
+
+                        <span class="fas fa-minus shop-w__toggle" data-target="#s-shipping" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse show" id="s-shipping">
+                        <ul class="shop-w__list gl-scroll">
+                            <li>
+
+                                <!--====== Check Box ======-->
+                                <div class="check-box">
+                                    <!-- onclick="location.href='{% url "product:free-shipping" %}' ;" -->
+                                    <input type="checkbox" id="free-shipping" >
+                                    <div class="check-box__state check-box__state--primary">
+
+                                        <label class="check-box__label" for="free-shipping">
+                                         Free Shipping
+                                        </label>
+                                    
+                                    </div>
+                                    
+                                </div>
+                                <!--====== End - Check Box ======-->
+                            </li>
+
+                            <li>
+
+                                <div class="check-box">
+
+                                    <input type="checkbox" id="free-shipping" onclick="location.href='{% url "product:free-shipping" %}' ;">
+                                    <div class="check-box__state check-box__state--primary">
+
+                                        <label class="check-box__label" for="free-shipping">
+                                         On Sale
+                                        </label>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">PRICE</h1>
+
+                        <span class="fas fa-minus shop-w__toggle" data-target="#s-price" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse show" id="s-price">
+                        <div class="shop-w__form-p">
+                            <!-- <b style="text-align: center;">{{minMaxPrice.price__min}}-{{minMaxPrice.price__max}}</b> -->
+                                <div>
+                                    
+
+                                    <input class="input-text input-text--primary-style" type="range"
+                                    value="{{minMaxPrice.price__min}}" max={{minMaxPrice.price__max}} 
+                                    min={{minMaxPrice.price__min}} id="rangeInput" oninput="maxPrice.value=this.value">
+                                    
+                                    
+                                </div>
+                                
+                               
+                          
+                            <div class="shop-w__form-p-wrap">
+                                
+                                <div>
+
+                                    <label for="price-max"></label>
+
+                                    <input style="width: 115px;" class="input-text input-text--primary-style" type="number"
+                                     value="{{minMaxPrice.price__min}}" max={{minMaxPrice.price__max}} min={{minMaxPrice.price__min}}
+                                     id="maxPrice" onkeyup="rangeInput.value=this.value" id="maxPrice" placeholder="Max"></div>
+                                <div>
+
+                                    <button style="width: 45px;" class="btn btn--icon fas fa-angle-right btn--e-transparent-platinum-b-2" id="priceFilterBtn"  type="submit"></button></div>
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">COLOR</h1>
+
+                        <span class="fas fa-minus shop-w__toggle" data-target="#s-color" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse show" id="s-color">
+                        {% for color in color  %}
+                          
+                        
+                        <ul class="shop-w__list gl-scroll">
+                            <li>
+                                <div class="color__check">
+
+                                    <input value="{{color.color__id}}" class="filter" data-filter="color" type="checkbox" id="jet">
+
+                                    <label class="color__check-label" for="jet" style="background-color: {{color.color__code}}"></label></div>
+
+                                <span class="shop-w__total-text">({{color.color_count}})</span>
+                            </li>
+                   
+                        </ul>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+            <div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">SIZE</h1>
+
+                        <span class="fas fa-minus collapsed shop-w__toggle" data-target="#s-size" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse" id="s-size">
+
+                        <ul class="shop-w__list gl-scroll">
+                            {% for size in size  %}
+                       
+                            <li>
+
+                                <!--====== Check Box ======-->
+                                <div class="check-box">
+
+                                    <input value="{{size.size__id}}" class="filter" data-filter="size" type="checkbox" id="xs">
+                                    <div class="check-box__state check-box__state--primary">
+
+                                        <label class="check-box__label" for="{{size.size__code}}">{{size.size__code|default_if_none:"___"}}</label></div>
+                                </div>
+                                <!--====== End - Check Box ======-->
+
+                                <span class="shop-w__total-text">({{size.size_count}})</span>
+                            </li>
+                          
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+<div class="u-s-m-b-30">
+                <div class="shop-w">
+                    <div class="shop-w__intro-wrap">
+                        <h1 class="shop-w__h">SHOP</h1>
+
+                        <span class="fas fa-plus shop-w__toggle" data-target="#s-manufacturer" data-toggle="collapse"></span>
+                    </div>
+                    <div class="shop-w__wrap collapse" id="s-manufacturer">
+                        <ul class="shop-w__list-2">
+
+                          {% for shop in shop  %}
+                            
+                   
+                            <li>
+                                <div class="list__content">
+
+                                    <input value="{{shop.shop__id}}" class="filter" data-filter="shop" type="checkbox">
+
+                                    <span>{{shop.shop__name}}</span>
+
+                                </div>
+       
+                                <span class="shop-w__total-text">({{shop.shop_count}})</span>
+                                               
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,41 @@
+{% load static %}
+
+
+
+  <a style="padding: 12px;color: blue;-webkit-text-stroke-width: thin;" class="btn-lg dropdown-toggle fs-base" type="button" data-bs-toggle="dropdown" 
+       aria-expanded="true">Browser</a> &nbsp;
+       
+       <div class="dropdown-menu dropdown-menu-end my-1" style="margin: 0px;position: absolute;inset:
+       45px auto auto -28px;" data-popper-placement="bottom-end">
+        <a class="dropdown-item" href="#">Patner With Us</a>
+        <a class="dropdown-item" href="#">Professional</a>
+       
+
+       </div> 
+
+
+
+<form style="width: inherit;" action="{% url 'product:search'  %}">
+    {% csrf_token %}
+
+    <div class="input-group">
+
+       <input class="form-control rounded-start" type="text" id='tags' name='q' placeholder="Start your search">
+       <button class="btn btn--e-brand" type="submit" style="width:50px;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">
+        <i class="fa fa-search"></i>
+       </button>
+    </div>
+</form>
+
+
+
+<script>
+  $( function() {
+ 
+    $( "#tags" ).autocomplete({
+      source: "{% url 'product:auto' %}"
+    });
+  } );
+</script>
+
+

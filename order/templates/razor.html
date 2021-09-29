@@ -1,0 +1,49 @@
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+
+
+    <div>
+        <h2>
+            Welcome to Razor pay
+        </h2>
+    </div>
+
+<head>
+    <style>
+        .center {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+
+<div class="center">
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <p class="mb-3">
+    Help us create more videos by donating 500 INR
+    </p>
+
+
+<!-- <form action="{% url 'order:razor' %}" method="POST"> -->
+
+<h1><a href="{% url 'order:razor' %}"></a> Eat me</h1>
+
+</form>
+
+</div>
+</div> 
+
+</body>
+</html>

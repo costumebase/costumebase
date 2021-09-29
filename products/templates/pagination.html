@@ -1,0 +1,70 @@
+{% load static %}
+
+
+
+
+<div class="u-s-p-y-60">
+
+    <!--====== Pagination ======-->
+    <ul class="shop-p__pagination">
+        {% if page_obj.has_previous %}
+
+        <li>
+
+            <a class="fas fa-angle-double-left" href="?page=1"></a>
+        
+        </li>
+    
+        <li>
+
+            <a class="fas fa-angle-left" href="?page={{ page_obj.previous_page_number }}"></a>
+        
+        </li>
+    
+        {% endif %}
+
+
+
+        {% for n in page_obj.paginator.page_range %}
+
+        {% if page_obj.number == n %}
+        <li class="is-active">
+
+            <a>{{n}}</a>
+        
+        </li>
+
+        {% elif n > page_obj.number|add:'-3' and n < page_obj.number|add:'3' %}
+
+        <li>
+
+            <a href="?page={{ n }}">{{n}}</a>
+        
+        </li>
+        {% endif %}
+        {% endfor %}
+
+
+
+
+        {% if page_obj.has_next %}
+        <li>
+
+        <a class="fas fa-angle-right" href="?page={{ page_obj.next_page_number }}"></a>
+    
+    </li>
+        <li>
+
+        <a class="fas fa-angle-double-right" href="?page={{ page_obj.paginator.num_pages }}"></a>
+    
+    </li>
+
+    {% endif %} 
+
+    </ul>
+    <!--====== End - Pagination ======-->
+
+
+
+</div>
+

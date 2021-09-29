@@ -1,0 +1,111 @@
+
+{% extends "dash_base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+
+
+
+
+<div class="container-fluid">
+
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        </div>
+        <div class="card-body">
+
+            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"> 
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+            
+            <form method="POST" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <div class="form-row">
+
+              
+
+                    <div class="form-group col-md-2 mb-0">
+                      {{ form.brand|as_crispy_field }}</div>
+                    <div class="form-group col-md-2 mb-0">
+                      {{ form.shop|as_crispy_field }}</div>
+
+                    <div class="form-group col-md-3 mb-0">
+                      {{ form.category|as_crispy_field }}</div>
+
+                  
+                   
+
+                  </div>
+                  <div class="form-row">
+                      
+                      <div class="form-group col-md-3 mb-0">
+                      {{ form.name|as_crispy_field }}</div>
+
+                      <div class="form-group col-md-2 mb-0">
+                      {{ form.price|as_crispy_field }}</div>
+
+                      <div class="form-group col-md-2 mb-0">
+                      {{ form.discount_price|as_crispy_field }}</div>
+
+                      <div class="form-group col-md-3 mb-0">
+                        {{ form.variant|as_crispy_field }}</div>
+                        
+                      <div class="form-group col-md-2 mb-0">
+                        {{ form.amount|as_crispy_field }}</div>
+  
+                    </div> 
+
+                    <div class="form-row">
+
+                      <div class="form-group col-md-3 mb-0">
+                      {{ form.image_main|as_crispy_field }}</div>
+                        
+  
+                        <div class="form-group col-md-2 mb-0" style="padding-top: 35px;">
+                        {{ form.is_for_sale|as_crispy_field }}</div>
+                        <div class="form-group col-md-2 mb-0" style="padding-top: 35px;">
+                        {{ form.is_free_shipping|as_crispy_field }}</div>
+
+               
+                        <div class="form-group col-md-5 mb-0">
+                        {{ form.description|as_crispy_field }}</div>
+                  
+                      
+                      </div> 
+
+                      <div class="form-row">
+                          
+                     
+                      </div> 
+
+
+                  <div class="col-lg-12 p-t-20 text-center">
+                    <button type="submit" class="btn btn-primary">Save</button>
+                    </div>
+
+            </form>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock content %}
+
+
+
+
+
+
+is_for_sale = models.BooleanField(default=True)
+is_free_shipping = models.BooleanField(default=False)
+created_at = models.DateTimeField(auto_now_add=True)
+updated_at = models.DateTimeField(auto_now=True)
+slug = models.SlugField(null=False, unique=True)
+
+

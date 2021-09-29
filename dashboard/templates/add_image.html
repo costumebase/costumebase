@@ -1,0 +1,45 @@
+{% extends "dash_base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+  
+
+<form method="POST" enctype="multipart/form-data">
+  {% csrf_token %}
+    
+
+
+ <label for="id_product">Product:</label>
+ 
+ <select name="product" required="" id="id_product">
+
+<!--   
+    <option value="" selected="">---------</option> -->
+  
+{% for p in productb  %}
+  
+    <option value="{{ p.id }}">{{p.name}}</option>
+
+ {% endfor %}
+  
+  </select>
+  
+  <label for="id_name">Name:</label>
+  
+  <input type="text" name="name" maxlength="50" id="id_name">
+
+  <label for="id_image">Image:</label>
+  
+  <input type="file" name="image" accept="image/*" id="id_image">
+
+   
+  
+  <button type="submit"> save me </button>
+</form>
+
+
+  
+{% endblock content %}

@@ -1,0 +1,105 @@
+{% extends 'chat/vendor_chats.html' %}
+{% load static %}
+
+{% block message %}
+{% for message in messages %}
+    {% if curr_user == message.sender_name %}   
+    <div class="d-flex justify-content-end mb-4">
+        <div class="msg_cotainer_send">
+           {{message.description}}
+            <span class="msg_time_send">{{message.time}}</span>
+        </div>
+        <div class="img_cont_msg">
+            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+             class="rounded-circle user_img_msg">
+        </div>
+    </div>
+
+    {% else %}
+    <div class="d-flex justify-content-start mb-4">
+        <div class="img_cont_msg">
+            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+             class="rounded-circle user_img_msg">
+        </div>
+        <div class="msg_cotainer">
+           {{message.description}}
+            <span class="msg_time">{{message.time}}</span>
+        </div>
+    </div>
+ 
+    {% endif %}
+{% endfor %}
+
+
+
+<script>
+function scrolltoend() {
+    $('#board').stop().animate({
+        scrollTop: $('#board')[0].scrollHeight
+    }, 800);
+}
+
+$(function () {
+    setInterval(receive, 1000)
+})
+
+const text =  '<div class="d-flex justify-content-start mb-4">' +
+             '<div class="img_cont_msg">'+
+                '<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">'+
+            '</div>' +
+             '<div class="msg_cotainer">' +
+            '{description}' +
+            '<span class="msg_time">{time}</span>' +
+            '</div>'+
+           
+            '</div>'
+
+function receive(){
+    $.get('/api/messages/' + sender_id + '/' + receiver_id, function(data){
+        if(data.length !== 0){
+            for(var i = 0; i < data.length; i++){
+                var field = text.replace('{description}', data[i].description);
+                var time = data[i].time.slice(0, 5) + ' a.m'
+                field = field.replace('{time}', time);
+                $('#board').append(field);
+                scrolltoend();
+            }
+        }
+    })
+}
+
+</script>
+
+{% endblock %}
+
+
+
+
+							<div class="d-flex justify-content-start mb-4">
+
+								<div class="img_cont_msg">
+									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">
+								</div>
+
+								<div class="msg_cotainer">
+									Hi, how are you samim?
+									<span class="msg_time">8:40 AM, Today</span>
+								</div>
+
+							</div>
+
+
+
+							<div class="d-flex justify-content-end mb-4">
+                       
+				   
+								<div class="msg_cotainer_send">
+								I am good
+									<span class="msg_time_send">8:55 AM, Today</span>
+								</div>
+								<div class="img_cont_msg">
+							<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+							 class="rounded-circle user_img_msg">
+								</div>
+                   
+							</div>

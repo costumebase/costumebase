@@ -1,0 +1,235 @@
+body{
+  background-color: white;
+}
+*:focus{
+  outline: none;
+}
+.box{
+  box-sizing: border-box;
+  width: 360px;
+  height: 600px;
+  border: 2px solid #3498db;
+  box-shadow: -3px -3px 7px #ffffff73,
+              3px 3px 5px rgba(94,104,121,0.288);
+  border-radius: 5px;
+  background-color: white;
+  margin-top: 50px;
+  overflow: hidden;
+}
+
+.image {
+  position: relative;
+  left: 50px;
+  box-sizing: border-box;
+  width: 149px;
+  height: 149px;
+  margin: 0;
+  padding: 3px;
+  background-color: white;
+}
+
+#base {
+  position: relative;
+  box-sizing: border-box;
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  margin: 0;
+  padding: 3px;
+  background-color: white;
+}
+
+/* img{
+  position: relative;
+  box-sizing: border-box;
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  margin: 0;
+  padding: 3px;
+  background-color: white;
+} */
+
+/* img{
+  position: relative;
+  left: 50px;
+  box-sizing: border-box;
+  width: 149px;
+  height: 149px;
+  border-radius: 50%;
+  margin: 0;
+  border: 5px solid #0082e6;
+  padding: 3px;
+  background-color: white;
+} */
+
+
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #5a7391;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-job {
+  text-transform: uppercase;
+  color: #5b9bd1;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+.profile-usermenu {
+  margin-top: 30px;
+}
+
+.profile-usermenu ul li {
+  border-bottom: 1px solid #f0f4f7;
+}
+
+.profile-usermenu ul li:last-child {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li a {
+  color: #93a3b5;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.profile-usermenu ul li a i {
+  margin-right: 8px;
+  font-size: 14px;
+}
+
+.profile-usermenu ul li a:hover {
+  background-color: #fafcfd;
+  color: #5b9bd1;
+}
+
+.profile-usermenu ul li.active {
+  border-bottom: none;
+}
+
+.profile-usermenu ul li.active a {
+  color: #5b9bd1;
+  background-color: #f6f9fb;
+  border-left: 2px solid #5b9bd1;
+  margin-left: -2px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 460px;
+  position: relative;
+  left: 30px;
+
+}
+
+h4{
+  border: 2px solid grey;
+  border-radius: 20px;
+}
+
+.checked {
+  color: blue;
+  position: relative;
+  left: 50px;
+}
+
+.unchecked {
+  color: blue;
+  position: relative;
+  left: 0px;
+}
+
+.section {
+  position: relative;
+  left: 70px;
+}
+
+
+body {
+    background-color: #f7f8f9;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+
+.row {margin: 0 -5px;}
+
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
+
+
+.card {
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 34, 51, 0.1);
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  border-radius: 20px;
+
+}
+
+.searchbar {
+  height: 30px;
+  border-radius: 20px;
+}
+#navBarSearchForm input[type=text]{width:430px !important;}

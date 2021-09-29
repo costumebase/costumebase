@@ -1,0 +1,318 @@
+{% load static %}
+{% load mptt_tags %}
+
+<header class="header--style-1 header--box-shadow">
+           
+    <!-- Remove "navbar-sticky" class to make navigation bar scrollable with the page.-->
+<div class="navbar-sticky bg-light">
+
+<div class="navbar navbar-expand-lg navbar-light">
+ <div class="container">
+   <a class="navbar-brand d-none d-sm-block flex-shrink-0" href="{% url 'product:product-index' %}">
+     <img src="{% static 'images/3inch.png' %}" width="142" alt="CB">
+   </a>
+   <a class="navbar-brand d-sm-none flex-shrink-0 me-2" href="{% url 'product:product-index' %}">
+       <img src="{% static 'images/1inch.png' %}" width="74" alt="CB"></a>
+  
+  
+   <div class="input-group d-none d-lg-flex mx-4">
+
+
+     <div class="input-group input-group-sm flex-nowrap">
+
+     {% include "search.html" %}
+
+ 
+     </div>          
+ 
+   </div>
+   
+ 
+
+   <div class="navbar-toolbar d-flex flex-shrink-0 align-items-center">
+
+
+     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+         
+       <span class="navbar-toggler-icon"></span>
+
+     </button>
+     
+     <a class="navbar-tool navbar-stuck-toggler" href="#">
+     
+     
+     <span class="navbar-tool-tooltip">Expand menu</span>
+
+
+
+       <div class="navbar-tool-icon-box">
+
+         
+        <i class="fa fa-bars"></i>
+       
+       </div></a>
+       
+       <a class="navbar-tool d-none d-lg-flex" href="{% url 'product:wish' %}">
+        <span class="navbar-tool-label">{{wishlist}}</span>
+
+       <div class="navbar-tool-icon-box">
+         
+         <i class="far fa-heart"></i>
+       
+       </div>
+
+       {% if request.user.is_authenticated %}
+         
+
+
+
+      </a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{% url 'dashboard:user-profile' %}" data-bs-toggle="modal">
+         
+       <div class="navbar-tool-icon-box"><i class="fas fa-user-cog"></i></div>
+       <div class="navbar-tool-text ms-n3"><small>Hello, {{ request.user.buyer.your_name|truncatechars:8 }}</small>
+        My Account</div></a>
+
+       {% else %}
+
+      </a><a class="navbar-tool ms-1 ms-lg-0 me-n1 me-lg-2" href="{% url 'register:customer_login' %}" data-bs-toggle="modal">
+         
+        <div class="navbar-tool-icon-box"><i class="fas fa-user-cog"></i></div>
+        <div class="navbar-tool-text ms-n3"><small>Hello, Sign in</small>My Account</div></a>
+
+       {% endif %}
+
+     <div class="navbar-tool dropdown ms-3">
+       <a class="navbar-tool-icon-box bg-secondary dropdown-toggle" href="shop-cart.html">
+
+
+        {% load cart_tag %}
+                                
+        {% shopcartcount user.id as count %}
+
+      
+
+
+         <span class="navbar-tool-label">{{count}}</span>
+
+      
+
+         <i class="fas fa-shopping-bag"></i>
+
+         {% shopcarttotal user.id as total %}
+
+       </a><a class="navbar-tool-text" href="shop-cart.html"><small>My Cart</small>${{total}}</a>
+
+
+       <!-- Cart dropdown-->
+
+   
+
+       <div class="dropdown-menu dropdown-menu-end">
+
+
+           
+           <!--====== Mini Product Container ======-->
+           <div class="mini-product-container gl-scroll u-s-m-b-15">
+{% for product in shopcart  %}
+
+{% if product.variant.image_id  > 0 %}
+                    <div class="card-mini-product">
+                                           <div class="mini-product" style="width: max-content;">
+                                               <div class="mini-product__image-wrapper">
+                                                   <a class="mini-product__link" href="product-detail.html">
+
+                                 <img class="u-img-fluid" src="{{product.variant.image}}" alt=""></a></div>
+                                               <div class="mini-product__info-wrapper">
+                                                   <span class="mini-product__category">
+                                                       <a href="shop-side-version-2.html">{{product.product.category.name}}</a></span>
+                                                   <span class="mini-product__name">
+                                                       <a href="product-detail.html">{{product.product.name}}</a></span>
+                                                   <span class="mini-product__quantity">{{product.quantity}} x</span>
+                                                   <span class="mini-product__price">${{product.varamount}}</span></div>
+                                           </div>
+                                           <a class="mini-product__delete-link far fa-trash-alt"></a>
+
+
+                      </div>
+
+                
+        {% else %}
+
+        <div class="card-mini-product">
+          <div class="mini-product">
+              <div class="mini-product__image-wrapper">
+                  <a class="mini-product__link" href="product-detail.html">
+
+<img class="u-img-fluid" src="{{product.product.image_main.url}}" alt=""></a></div>
+              <div class="mini-product__info-wrapper">
+                  <span class="mini-product__category">
+                      <a href="shop-side-version-2.html">{{product.product.category.name}}</a></span>
+                  <span class="mini-product__name">
+                      <a href="product-detail.html">{{product.product.name}}</a></span>
+                  <span class="mini-product__quantity">{{product.quantity}} x</span>
+                  <span class="mini-product__price">${{product.amount}}</span></div>
+          </div>
+          <a class="mini-product__delete-link far fa-trash-alt"></a>
+
+
+</div>
+
+
+
+
+{% endif %}                         
+  
+{% endfor %}
+                 
+
+                                </div>
+
+           <div class="mini-product-stat">
+             <div class="mini-total">
+
+                 <span class="subtotal-text">SUBTOTAL</span>
+
+                 <span class="subtotal-value">${{total}}</span></div>
+             <div class="mini-action">
+
+                 <a class="mini-link btn--e-brand-b-2" href="{% url 'order:checkout' %}">PROCEED TO CHECKOUT</a>
+
+                 <a class="mini-link btn--e-transparent-secondary-b-2" href="{% url 'cart:shopcart' %}">VIEW CART</a></div>
+         </div>
+      
+       </div> 
+
+     
+     </div>
+   </div>
+ </div>
+</div>
+
+<div class="navbar navbar-expand-lg navbar-light navbar-stuck-menu mt-n2 pt-0 pb-2">
+
+
+ <div class="container">
+
+   <div class="collapse navbar-collapse" id="navbarCollapse">
+
+     <!-- Search-->
+     <div class="input-group d-lg-none my-3">
+
+
+
+    <a style="padding: 12px;color: blue;-webkit-text-stroke-width: thin;" 
+    class="btn-lg dropdown-toggle fs-base" type="button" data-bs-toggle="dropdown" 
+       aria-expanded="true">Browser</a> &nbsp;
+       
+       <div class="dropdown-menu dropdown-menu-end my-1" style="margin: 0px;position: absolute;inset:
+       45px auto auto -28px;" data-popper-placement="bottom-end">
+
+        <a class="dropdown-item" href="#">Photos</a>
+        <a class="dropdown-item" href="#">Graphics</a>
+       </div>
+ 
+
+      <form style="position: relative;
+      flex: 1 1 auto;
+      width: 1%;
+      min-width: 0;" action="{% url 'product:search'  %}">
+    {% csrf_token %}
+
+    <div class="input-group">
+
+       <input class="form-control rounded-start" type="text" id='tag' name='q' placeholder="Start your search">
+       <button class="btn btn--e-brand" type="submit"
+       
+        style="width:50px;border-bottom-right-radius: 5px;border-top-right-radius: 5px;">
+
+        <i class="fa fa-search"></i>
+       </button>
+    </div>
+           </form>
+
+     </div>
+   
+
+
+     <script>
+        $( function() {
+       
+          $( "#tag" ).autocomplete({
+            source: "{% url 'product:auto' %}"
+          });
+        } );
+      </script>
+
+
+
+<div class="menu-init" id="navigation2">
+
+                   <!--====== Menu ======-->
+     <ul class="ah-list ah-list--design2 ah-list--link-color-secondary">
+
+       <li class="has-dropdown">
+
+         <a style="font-size:medium;">ALL CATEGORIES<i style="font-size: large; line-height: 24px;" class="fas fa-angle-down u-s-m-l-6"></i></a>
+
+  
+         <!--====== Dropdown ======-->
+
+         <span class="js-menu-toggle"></span>
+
+         <ul style="width:170px">
+
+          
+            {% recursetree category %}
+
+             <li class="has-dropdown has-dropdown--ul-left-100">
+
+                <a href="{% url 'product:category-detail' node.slug %}">{{node.name}}
+
+                    {% if not node.is_leaf_node %}
+                    
+                    <i class="fas fa-angle-down i-state-right u-s-m-l-6"></i>
+                    {% endif %}
+                    
+                </a>
+
+                 <!--====== Dropdown ======-->
+                 {% if not node.is_leaf_node %}
+                 <span class="js-menu-toggle"></span>
+                 {% endif %}
+
+                 {% if not node.is_leaf_node %}
+
+                 <ul style="width:170px">
+
+                         <li>{{children}}</li>     
+                 
+                 </ul>
+                 {% endif %}
+                 <!--====== End - Dropdown ======-->
+             </li>
+       
+             {% endrecursetree %}
+            
+         </ul>
+
+
+         <!--====== End - Dropdown ======-->
+         
+     </li>
+
+   <li>
+
+     <a href="shop-side-version-2.html">BRAND</a></li>
+ <li>
+
+     <a href="{% url 'product:shops' %}">SHOPS</a></li>
+
+
+     </ul>
+
+   </div>
+ </div>
+</div>
+</div>
+
+ </header>

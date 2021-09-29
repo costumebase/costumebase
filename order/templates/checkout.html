@@ -1,0 +1,269 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="checkout.html">Checkout</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+
+
+            <!--====== Section 2 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div id="checkout-msg-group">
+                                
+                                    <!-- <div class="msg">
+
+                                        <span class="msg__text">Have a coupon?
+
+                                            <a class="gl-link" href="#have-coupon" data-toggle="collapse">Click Here to enter your code</a></span>
+                                        <div class="collapse" id="have-coupon" data-parent="#checkout-msg-group">
+                                            <div class="c-f u-s-m-b-16">
+
+                                                <span class="gl-text u-s-m-b-16">Enter your coupon code if you have one.</span>
+                                                <form class="c-f__form">
+                                                    <div class="u-s-m-b-16">
+                                                        <div class="u-s-m-b-15">
+
+                                                            <label for="coupon"></label>
+
+                                                            <input class="input-text input-text--primary-style" type="text" id="coupon" placeholder="Coupon Code"></div>
+                                                        <div class="u-s-m-b-15">
+
+                                                            <button class="btn btn--e-transparent-brand-b-2" type="submit">APPLY</button></div>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
+
+
+            <!--====== Section 3 ======-->
+            <div class="u-s-p-b-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="checkout-f">
+                            <div class="row row--center">
+                                <div class="col-lg-6">
+                                    <h1 class="checkout-f__h1">DELIVERY INFORMATION</h1>
+
+                                    <form action="" method="POST" class="checkout-f__delivery">
+                                        {% csrf_token %}
+                                        <div class="u-s-m-b-30">
+                                            <div class="u-s-m-b-15">
+
+                                                <!--====== Check Box ======-->
+                                                <!-- <div class="check-box">
+
+                                                    <input type="checkbox" id="get-address">
+                                                    <div class="check-box__state check-box__state--primary">
+
+                                                        <label class="check-box__label" for="get-address">Use default shipping and billing address from account</label></div>
+                                                </div> -->
+                                                <!--====== End - Check Box ======-->
+                                            </div>
+
+                                            <!--====== First Name, Last Name ======-->
+                                            <div class="gl-inline">
+                                                <div class="u-s-m-b-15">
+
+                                                    <label class="gl-label" for="billing-fname">FIRST NAME *</label>
+
+                                                    <input class="input-text input-text--primary-style" type="text" name="first_name" 
+                                                    value="{{ user.userprofile.first_name }}" required id="id_first_name" data-bill=""></div>
+                                                <div class="u-s-m-b-15">
+
+                                                    <label class="gl-label" for="billing-lname">LAST NAME *</label>
+
+                                                    <input class="input-text input-text--primary-style" type="text" name="last_name"  
+                                                    value="{{ user.userprofile.last_name }}" required id="id_last_name" data-bill=""></div>
+                                            </div>
+                                            <!--====== End - First Name, Last Name ======-->
+
+                                            <!--====== PHONE ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <label class="gl-label" for="billing-phone">PHONE *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="phone" 
+                                                value="{{ user.userprofile.phone }}" required id="id_phone" data-bill=""></div>
+                                            <!--====== End - PHONE ======-->
+
+
+                                            <!--====== Street Address ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <label class="gl-label" for="billing-street">STREET ADDRESS *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="address" 
+                                                value="{{ user.userprofile.address }}" required id="id_address" placeholder="House name and street name" data-bill=""></div>
+
+                                            <div class="u-s-m-b-15">
+
+                                                <label for="billing-street-optional"></label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="address_optional" 
+                          value="{{ user.userprofile.address_optional }}" id="id_address_optional" placeholder="Apartment, suite unit etc. (optional)" data-bill=""></div>
+                                            <!--====== End - Street Address ======-->
+
+
+                                            <!--====== Country ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <!--====== Select Box ======-->
+
+                                                <label class="gl-label" for="billing-country">COUNTRY *</label>
+                                                <select class="select-box select-box--primary-style" name="country" id="id_country" data-bill="">
+                                                    <option value="{{ user.userprofile.country }}" selected>{{ user.userprofile.country }}</option>
+                                                    <option value="uae">(UAE)</option>
+                                                    <option value="uk"> (UK)</option>
+                                                    <option value="us">(US)</option>
+                                                </select>
+                                                <!--====== End - Select Box ======-->
+                                            </div>
+                                            <!--====== End - Country ======-->
+
+
+                                            <!--====== Town / City ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <label class="gl-label" for="billing-town-city">TOWN/CITY *</label>
+                                                    <select class="select-box select-box--primary-style" name="city" id="id_city" data-bill="">
+                                                        <option value="{{ profile.city }}" selected>{{ user.userprofile.city }}</option>
+                                                        <option value="uae">A City</option>
+                                                        <option value="uk">B City</option>
+                                                        <option value="us">C City</option>
+                                                    </select>
+                                            
+                                            </div>
+                                            <!--====== End - Town / City ======-->
+
+
+                                            <!--====== STATE/PROVINCE ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <!--====== Select Box ======-->
+
+                                                <label class="gl-label" for="billing-state">STATE/PROVINCE *</label>
+                                                
+                                                <input class="input-text input-text--primary-style" type="text" name="province"
+                                                id="id_province" value="{{ user.userprofile.province }}" id="id_province" placeholder="State/Province" data-bill="">
+                                                <!--====== End - Select Box ======-->
+                                            </div>
+                                            <!--====== End - STATE/PROVINCE ======-->
+
+
+                                            <!--====== ZIP/POSTAL ======-->
+                                            <div class="u-s-m-b-15">
+
+                                                <label class="gl-label" for="billing-zip">ZIP/POSTAL CODE *</label>
+
+                                                <input class="input-text input-text--primary-style" type="text" name="zip"
+                                                id="id_zip" value="{{ user.userprofile.zip }}" required id="billing-zip" placeholder="Zip/Postal Code" data-bill="">
+                                                </div>
+                                            <!--====== End - ZIP/POSTAL ======-->
+                                            <div class="u-s-m-b-10">
+
+                                                <!--====== Check Box ======-->
+                                                
+                                                <!--====== End - Check Box ======-->
+                                            </div>
+                                            
+                                          
+                                            <div class="u-s-m-b-10">
+
+                                                <label class="gl-label" for="order-note">ORDER NOTE</label>
+                                                
+                                                <textarea class="text-area text-area--primary-style"
+                                                 name="adminnote" id="id_adminnote"></textarea></div>
+                                            <div>
+
+                                       
+                                                <div>
+
+                                                    <button class="btn btn--e-transparent-brand-b-2" type="submit">Ship Here</button></div>
+                                         
+                                            
+                                            
+                                            </div>
+                                        </div>
+                                    </form>
+
+
+                                </div>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 3 ======-->
+        </div>
+        <!--====== End - App Content ======-->
+
+
+        <!--====== Main Footer ======-->
+      
+
+        <!--====== Modal Section ======-->
+
+
+        <!--====== Shipping Address Add Modal ======-->
+      
+        <!--====== End - Shipping Address Add Modal ======-->
+
+
+        <!--====== Shipping Address Add Modal ======-->
+     
+        <!--====== End - Shipping Address Add Modal ======-->
+        <!--====== End - Modal Section ======-->
+   
+    <!--====== End - Main App ======-->
+
+
+    <!--====== Google Analytics: change UA-XXXXX-Y to be your site's ID ======-->
+      
+{% endblock content %}

@@ -1,0 +1,42 @@
+
+                                {% for product in object_list  %}
+                                 <div class="col-lg-4 col-md-6 col-sm-6">
+                                     <div class="product-m">
+                                         <div class="product-m__thumb">
+
+                                             <a class="aspect aspect--bg-grey aspect--square u-d-block" href="{% url 'product:product-detail' product.id product.slug %}">
+
+                                                 <img class="aspect__img" src="{{product.image_main.url}}" alt="{{product.name}}"></a>
+                                             <div class="product-m__quick-look">
+
+                                                 <a class="far fa-heart" href="." data-tooltip="tooltip" data-placement="top" 
+                                                 title="Add to Wishlist">
+
+                                                 </a>
+                                                 </div>
+                                             <div class="product-m__add-cart">
+
+                                                 <a class="btn--e-brand" data-modal="modal" data-modal-id="#add-to-cart">Add to Cart</a></div>
+                                         </div>
+                                         <div class="product-m__content">
+                                             <div class="product-m__category">
+
+                                                 <a href="{{product.category.get_absolute_url}}">{{product.category.name}}</a></div>
+                                             <div class="product-m__name">
+
+                                                 <a href="{% url 'product:product-detail' product.id product.slug %}">{{product.name}}</a></div>
+                                             <div class="product-m__rating gl-rating-style">
+                                                 <i class="fas fa-star"></i><i class="fas fa-star"></i>
+                                                 <i class="fas fa-star-half-alt"></i><i class="far fa-star"></i>
+                                                 <i class="far fa-star"></i>
+
+                                                 <span class="product-m__review">(23)</span></div>
+                                                 <span class="product-bs__price">₹{{product.price}}
+
+                                             <span class="product-bs__discount">₹{{product.discount_price}}</span></span>
+                                             
+                             
+                                         </div>
+                                     </div>
+                                 </div>
+                                 {% endfor %}

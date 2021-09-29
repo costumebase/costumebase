@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %} {% endblock title %}</title>
+
+  
+
+    {% include "head.html" %}
+
+</head>
+
+<body class="config">
+    
+  <div class="preloader is-active">
+    <div class="preloader__wrap">
+
+        <img class="preloader__img" src="images/preloader.png" alt=""></div>
+</div>
+
+<div id="app">
+
+
+
+
+      
+
+
+{% include "header.html" %}
+
+
+    {% if messages %}
+
+            {% for mess in messages %}
+
+            {% if "To:" in mess|safe %} 
+                  
+            {% else %}
+
+            <div class="row justify-content-md-center">
+              <div class="col-md-6">
+                <br>
+              <div class="alert alert_{{ mess.tags }}">
+              <div class="alert--icon">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+                <div class="alert--content">
+                  {{mess}}
+                </div>
+               </div>
+                <br>
+              </div>
+            </div>
+            
+    {% endif %}
+
+        {% endfor %}
+
+    {% endif %}
+  
+    {% block content %}
+
+    {% endblock content %}
+
+
+    {% include "footer.html" %}
+
+  </div>
+
+    {% include "script.html" %}
+       
+
+    {% block extra_scripts %}
+
+    {% endblock extra_scripts %}
+
+
+</body>
+</html>

@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+    {% block content %}
+<head>
+	<script type="text/javascript" src="{% static 'js/message.js' %}"></script>
+
+	<link rel="stylesheet" href="{% static 'css/message.css' %}">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="dash-my-profile.html">My Account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+
+            
+            <!--====== Section 2 ======-->
+<div class="u-s-p-b-60">
+
+        <!--====== Section Content ======-->
+  <div class="section__content">
+    <div class="dash">
+        <div class="container">
+
+
+        <div class="row">
+            <div class="col-lg-3 col-md-12">
+
+                <!--====== Dashboard Features ======-->
+                 {% include "customer_dashboard_sidebar.html" %}
+                <!--====== End - Dashboard Features ======-->
+
+
+            </div>
+
+
+        <div class="col-lg-3">
+            
+            <div class="card mb-sm-3 mb-md-0 contacts_card">
+            <div class="card-header">
+                <div class="input-group">
+                    <input type="text" placeholder="Search..." name="" class="form-control search">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text search_btn"><i class="fas fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+
+
+            
+            <div class="card-body contacts_body">
+
+
+                <ui class="contacts">
+                    
+
+              
+                <li class=" " >
+                      {% for friend in friends %}
+                    <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                            <span class="online_icon"></span>
+                        </div>
+                        <div class="user_info">
+                        <a href="/chat/{{friend.username}} ">
+                            <span>lol{{friend.name}}</span>
+                            <p>Kalid is online</p></a>
+                        </div>
+                    </div>  
+                    {% endfor %}
+
+                </li>
+
+               
+
+                </ui>
+            
+            </div>
+
+
+            <div class="card-footer"></div>
+        </div>
+    
+    </div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+    
+
+    <div class="main">
+    
+
+
+        <div style="margin-top: 40vh; text-align: center">
+            <h2>Select a chat & start messaging!</h2>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+        {% endblock %}

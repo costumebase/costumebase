@@ -1,0 +1,142 @@
+{% extends "dash_base.html" %}
+
+{% load static %}
+
+
+{% block content %}
+  
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+            <!-- Page Heading -->
+            <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+            <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below.
+                For more information about DataTables, 
+   
+                
+                visit the <a target="_blank"
+                    href="https://datatables.net">official DataTables documentation</a>.</p>
+
+            <!-- DataTales Example -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-6 col-6">
+                                <div class="btn-group">
+                                    <a href="add_professor.html" id="addRow" class="btn btn-info">
+                                        Add New <i class="fa fa-plus"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-6 col-sm-6 col-6">
+                                <div class="btn-group pull-right">
+                                    <a class="btn deepPink-bgcolor btn-outline dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">Tools
+                                        <i class="fa fa-angle-down"></i>
+                                    </a>
+                                    <ul class="dropdown-menu pull-right" style="margin: 0px;">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-print"></i> Print </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-file-pdf-o"></i> Save as
+                                                PDF </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <i class="fa fa-file-excel-o"></i>
+                                                Export to Excel </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div> -->
+                        </div>
+                        <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+           
+                            <thead>
+                                <tr>
+                                    <th>Shop</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Discount Price</th>
+                                    <th>Image</th>
+                                    <th>Variants</th>
+                                    <th>Amount</th>
+                                    <th>For Sale</th>
+                                    <th>Free Shipping</th>
+                                    <th>Edit</th>
+                        
+
+                                </tr>
+                            </thead>
+                            <tfoot>
+                                <tr>
+                                    <th>Shop</th>
+                                    <th>Brand</th>
+                                    <th>Category</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Discount Price</th>
+                                    <th>Image</th>
+                                    <th>Variants</th>
+                                    <th>Amount</th>
+                                    <th>For Sale</th>
+                                    <th>Free Shipping</th>
+                                    <th>Edit</th>
+                                
+
+                                </tr>
+                            </tfoot>
+
+
+                            <tbody>
+
+                                {% for product in object_list  %}
+                                <tr>
+                                    
+                                    <td>{{product.shop.name}}</td>
+                                    <td>{{product.brand.name}}</td>
+                                    <td>{{product.category.name}}</td>
+                                    <td>{{product.name}}</td>
+                                    <td>{{product.price}}</td>
+                                    <td>{{product.discount_price}}</td>
+                                    <td><img src="{{product.image_main.url}}" alt="" style="width: 30px; height: 30px;"></td>
+                                    <td>{{product.variant}}</td>
+                                    <td>{{product.amount}}</td>
+                                    <td>{{product.is_for_sale}}</td>
+                                    <td>{{product.is_free_shipping}}</td>
+                                    <td> 
+
+                                    <a style="margin-bottom: 1px;" href="#" class="btn btn-primary btn-circle btn-sm">
+                                        <i class="fas fa-plus-square"></i>
+                                    </a>
+                              
+                                    <a href="#" class="btn btn-danger btn-circle btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+
+                             
+                             
+
+                                
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+{% endblock content %}

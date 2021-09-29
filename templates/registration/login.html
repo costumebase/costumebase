@@ -1,0 +1,185 @@
+{% extends "register.html" %}
+{% load static %}
+
+{% block content %}
+
+       <!--====== App Content ======-->
+       <div class="app-content">
+
+        <!--====== Section 1 ======-->
+        <div class="u-s-p-y-12">
+
+            <!--====== Section Content ======-->
+            <div class="section__content">
+                <div class="container">
+                    <div class="breadcrumb">
+                        <div class="breadcrumb__wrap">
+                            <ul class="breadcrumb__list">
+                                <li class="has-separator">
+
+                                    <a href="index.html">Home</a></li>
+                                <li class="is-marked">
+
+                                    <a href="signin.html">Signin</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--====== End - Section 1 ======-->
+
+
+        <!--====== Section 2 ======-->
+        <div class="u-s-p-b-60">
+
+            <!--====== Section Intro ======-->
+            <!-- <div class="section__intro u-s-m-b-60">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="section__text-wrap">
+                                <h1 class="section__heading u-c-secondary">ALREADY REGISTERED?</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+            <!--====== End - Section Intro ======-->
+
+
+            <!--====== Section Content ======-->
+            <div class="section__content">
+                <div class="container">
+                    <div class="row row--center">
+                        <div class="col-lg-5 col-md-8 u-s-m-b-30">
+                            <div class="l-f-o">
+                                <div class="l-f-o__pad-box">
+                                    <!-- <h1 class="gl-h1">I'M NEW CUSTOMER</h1>
+
+                                    <span class="gl-text u-s-m-b-30">By creating an account with our store, you will be able to move through the checkout process faster, store shipping addresses, view and track your orders in your account and more.</span>
+                                    <div class="u-s-m-b-15">
+
+                                        <a class="l-f-o__create-link btn--e-transparent-brand-b-2" href="signup.html">CREATE AN ACCOUNT</a></div>
+                                    
+
+                                    <span class="gl-text u-s-m-b-30">If you have an account with us, please log in.</span> -->
+                                   
+                                    <h3 style="text-align: center;"><img src="{% static 'images/3inch.png' %}" alt=""></h3>
+
+                                    <hr class="new5">
+                                    {% if messages %}
+                                    {% for mess in messages %}
+
+                                    <div class="alert alert_{{ mess.tags }}">
+                                        <div class="alert--icon">
+                                            <i class="fas fa-times-circle"></i>
+                                          </div>
+                                          <div class="alert--content">
+                                            {{mess}}
+                                          </div>
+                                    </div>
+   
+                                    {% endfor %}
+
+                                  {% endif %}
+
+                                    <form method="POST" class="l-f-o__form">
+                                        {% csrf_token %}
+
+                                        {% if form.errors %}
+                                        {% for field in form %}
+                                            {% for error in field.errors %}
+                                                <div class="alert alert_error">
+                                                    <p>{{ error|escape }}</p>
+                                                </div>
+                                            {% endfor %}
+                                        {% endfor %}
+                                        {% for error in form.non_field_errors %}
+                                            <div class="alert alert_error">
+                                                <p>{{ error|escape }}</p>
+                                            </div>
+                                        {% endfor %}
+                                        {% endif %} 
+                                        <br>
+
+                                        <!-- <div class="gl-s-api">
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="gl-s-api__btn gl-s-api__btn--fb" type="button"><i class="fab fa-facebook-f"></i>
+
+                                                    <span>Signin with Facebook</span></button></div>
+                                            <div class="u-s-m-b-15">
+
+                                                <button class="gl-s-api__btn gl-s-api__btn--gplus" type="button"><i class="fab fa-google"></i>
+
+                                                    <span>Signin with Google</span></button></div>
+                                        </div> -->
+                                        <div class="u-s-m-b-30">
+
+                                            <label class="gl-label" for="login-email">E-MAIL *</label>
+
+                                            <input class="input-text input-text--primary-style"  type="text" name="username" required="" id="id_username" placeholder="Enter E-mail"></div>
+      
+                                        <div class="u-s-m-b-30">
+
+                                            <label class="gl-label" for="login-password">PASSWORD *</label>
+
+                                        <input class="input-text input-text--primary-style" type="password" name="password" required="" id="id_password" placeholder="Enter Password"></div>
+
+                                            <div style="text-align: right;">
+                                                <a class="gl-link" href="{% url 'password_reset' %}">Forgot Password?</a>
+                                            </div>
+                                           
+                                        <div style="text-align: center;">
+                                            <div class="u-s-m-b-30">
+
+                                                <button class="btn btn--e-brand" type="submit">LOGIN</button>
+                                            
+                                            </div>
+                                           
+                                        
+                                        <div class="u-s-m-b-30">
+                                            <div style="text-align: center;">
+                                                Don't have an account? <a class="gl-link" href="{% url 'register:customer_register' %}"> Sign Up </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                   
+                                        
+                                        <div class="u-s-m-b-30">
+
+                                            <!--====== Check Box ======-->
+                                            <!-- <div class="check-box">
+
+                                                <input type="checkbox" id="remember-me">
+                                                <div class="check-box__state check-box__state--primary">
+
+                                                    <label class="check-box__label" for="remember-me">Remember Me</label></div>
+                                            </div> -->
+                                            <!--====== End - Check Box ======-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section Content ======-->
+        </div>
+        <!--====== End - Section 2 ======-->
+    </div>
+    <!--====== End - App Content ======-->
+
+
+    <!--====== Main Footer ======-->
+  
+
+<!--====== End - Main App ======-->
+
+
+
+  
+{% endblock content %}

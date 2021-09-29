@@ -1,0 +1,258 @@
+
+
+{% extends "base.html" %}
+{% load static %}
+
+{% block  content %}
+
+<head>
+	<script type="text/javascript" src="{% static 'js/message.js' %}"></script>
+	<link rel="stylesheet" href="{% static 'css/message.css' %}">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
+</head>
+	<!--Coded With Love By Mutiullah Samim-->
+
+        <!--====== App Content ======-->
+        <div class="app-content">
+
+            <!--====== Section 1 ======-->
+            <div class="u-s-p-y-60">
+
+                <!--====== Section Content ======-->
+                <div class="section__content">
+                    <div class="container">
+                        <div class="breadcrumb">
+                            <div class="breadcrumb__wrap">
+                                <ul class="breadcrumb__list">
+                                    <li class="has-separator">
+
+                                        <a href="index.html">Home</a></li>
+                                    <li class="is-marked">
+
+                                        <a href="dash-my-profile.html">My Account</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--====== End - Section 1 ======-->
+
+
+            <!--====== Section 2 ======-->
+    <div class="u-s-p-b-60">
+
+                <!--====== Section Content ======-->
+        <div class="section__content">
+            <div class="dash">
+                <div class="container">
+
+
+                <div class="row">
+                    <div class="col-lg-3 col-md-12">
+
+						<!--====== Dashboard Features ======-->
+			         	{% include "customer_dashboard_sidebar.html" %}
+						<!--====== End - Dashboard Features ======-->
+
+
+					</div>
+
+
+				<div class="col-lg-3">
+					
+					<div class="card mb-sm-3 mb-md-0 contacts_card">
+					<div class="card-card-header">
+							
+								<h3 style="text-align: center; color: white;"><b> Chat List </b></h3>
+
+					</div>
+
+
+					
+					<div class="card-body contacts_body">
+
+
+						<ui class="contacts">
+							
+		
+					  
+                            <li class=" " >
+                                {% for friend in friends %}
+                              <div class="d-flex bd-highlight">
+                                  <div class="img_cont">
+                                      <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                       class="rounded-circle user_img" style="width:100%;">
+                                      <!-- <span class="online_icon"></span> -->
+                                  </div>
+                                  <div class="user_info">
+                                  <a href="/chat/{{friend.username}} ">
+                                      <span>{{friend.name}}</span>
+                                      <p>Response with an hour</p></a>
+                                  </div>
+                              </div>  
+                              {% endfor %}
+                              
+          
+                          </li>
+          
+	                   
+
+						</ui>
+					
+					</div>
+
+
+					<div class="card-card-footer"></div>
+				</div>
+			
+			</div>
+
+
+
+				<div class="col-lg-6">
+					<div class="card">
+
+						
+						<div class="card-card-header msg_head">
+
+
+							
+							<div class="d-flex bd-highlight">
+								<div class="img_cont">
+									<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+									 class="rounded-circle user_img" style="width:100%;">
+								
+								</div>
+								<div class="user_info">
+									<span>Chat with {{friend.name}} </span>
+									<p>1767 Messages</p>
+								</div>
+							
+							</div>
+
+
+							<!-- <span id="action_menu_btn"><i class="fas fa-ellipsis-v"></i></span>
+
+						
+							<div class="action_menu">
+								<ul>
+									<li><i class="fas fa-user-circle"></i> View profile</li>
+									<li><i class="fas fa-users"></i> Add to close friends</li>
+									<li><i class="fas fa-plus"></i> Add to group</li>
+									<li><i class="fas fa-ban"></i> Block</li>
+								</ul>
+
+							</div> -->
+
+
+						</div>
+
+
+					
+                            <div class="messages" id="board">
+                                {% block message %}
+                    
+                    
+                    
+                                {% endblock %}
+                    
+                            </div>
+					
+
+						<div class="card-card-footer">
+
+                            	<div class="input-group">
+
+                                <form method="post" class="form-group" id="chat-box">
+
+                                    {% csrf_token %}
+                          
+                    
+                                            <input type="text" class="type_msg" 
+                                            placeholder="  Send a message..." name="message" 
+                                            id="msg_field">
+                                            <button type="submit" name="send" id="send_btn">
+                                                <i class="fas fa-location-arrow"></i></button>
+        
+                                </form>
+                                  </div>
+
+
+						</div>
+
+
+
+
+
+					</div>
+				</div>
+             </div>		
+			
+                        </div>
+                    </div>
+                </div>
+                <!--====== End - Section Content ======-->
+            </div>
+            <!--====== End - Section 2 ======-->
+        </div>
+        <!--====== End - App Content ======-->
+
+
+        <!-- class="msg_cotainer" -->
+
+        
+
+    <script>
+        var messageBody = document.querySelector('.messages');
+        messageBody.scrollTop = messageBody.scrollHeight - messageBody.clientHeight;
+
+        sender_id = "{{ friend.id }}";
+        receiver_id = "{{ curr_user.id }}";
+
+        function scrolltoend() {
+            $('#board').stop().animate({
+                scrollTop: $('#board')[0].scrollHeight
+            }, 800);
+         }
+
+        const text_box = '<div class="d-flex justify-content-end mb-4">' +
+             '<div class="msg_cotainer_send ">' +
+            // '<img src="{% static 'images/user_image.jpg' %}" alt="Avatar" class="right" style="width:10%;">' +
+            '{description}' +
+            '<span class="msg_time_send">{time}</span>' +
+                '</div>'+
+            '<div class="img_cont_msg">'+
+                '<img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img_msg">'+
+            '</div>' +
+            '</div>'
+
+        //For sending
+        $(function () {
+            $('#chat-box').on('submit', function (event) {
+                event.preventDefault();
+                var message = $('#msg_field');
+                send('{{ curr_user.username }}', '{{ friend.username }}', message.val());
+                message.val('');
+            })
+        })
+
+        function send(sender, receiver, message){
+
+            $.post('/api/messages', '{"sender_name": "' + sender + '", "receiver_name": "' +
+                    receiver + '","description": "' + message + '" }', function (data) {
+                var field = text_box.replace('{description}', message);
+                var today = new Date();
+                var time = today.getHours() + ":" + today.getMinutes()
+                field = field.replace('{time}', time)
+                $('#board').append(field);
+                scrolltoend();
+            })
+        }
+
+    </script>
+
+
+
+{% endblock %}

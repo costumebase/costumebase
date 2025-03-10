@@ -1,7 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth import login
 from django.shortcuts import redirect
-from django.utils.encoding import force_text
+from django.utils.encoding import force_str
 from django.views.decorators.http import require_http_methods
 from .tokens import account_activation_token, cutomer_account_token
 from django.utils.http import urlsafe_base64_decode

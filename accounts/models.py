@@ -4,7 +4,7 @@ from django.db.models.signals import post_save
 from django.conf import settings
 from django.contrib.auth.models import AbstractUser
 from django.forms.widgets import NumberInput
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from accounts.managers import CustomUserManager
 from django.core.validators import RegexValidator
 from django.dispatch import receiver

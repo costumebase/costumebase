@@ -10,27 +10,33 @@
         <ul class="dash__f-list">
             <li>
 
-                <a href="{% url 'dashboard:user-dashboard' %}">Manage My Account</a></li>
+                <a href="{% url 'dashboard:user-dashboard' %}">Manage My Account</a>
+            </li>
             <li>
 
-                <a class="dash-active" href="{% url 'dashboard:user-profile' %}">My Profile</a></li>
+                <a class="dash-active" href="{% url 'dashboard:user-profile' %}">My Profile</a>
+            </li>
             <li>
 
-                <a class="dash-active" href="{% url 'product:chat' request.user.username %}">Message</a></li>
-           
-            <!-- <li>
+                <!-- customer_dashboard_sidebar.html -->
+                <a class="dash-active"
+                    href="{% if request.user.is_authenticated %}{% url 'product:chat' request.user.username %}{% else %}#{% endif %}">Message</a>
+                <!-- <li>
 
                 <a href="dash-track-order.html">Track Order</a></li> -->
             <li>
 
-                <a href="{% url 'order:user-order' %}">My Orders</a></li>
-           
+                <a href="{% url 'order:user-order' %}">My Orders</a>
+            </li>
+
             <li>
 
-                <a href="dash-cancellation.html">My Returns & Cancellations</a></li>
+                <a href="dash-cancellation.html">My Returns & Cancellations</a>
+            </li>
             <li>
 
-                <a href="{% url 'logout' %}">Logout</a></li>
+                <a href="{% url 'logout' %}">Logout</a>
+            </li>
         </ul>
     </div>
 </div>
@@ -44,7 +50,8 @@
 
                     <span class="dash__w-text">{{order_count.count}}</span>
 
-                    <span class="dash__w-name">Orders Placed</span></div>
+                    <span class="dash__w-name">Orders Placed</span>
+                </div>
             </li>
             <li>
                 <div class="dash__w-wrap">
@@ -53,7 +60,8 @@
 
                     <span class="dash__w-text">{{order_canceld}}</span>
 
-                    <span class="dash__w-name">Cancel Orders</span></div>
+                    <span class="dash__w-name">Cancel Orders</span>
+                </div>
             </li>
             <li>
                 <div class="dash__w-wrap">
@@ -62,7 +70,8 @@
 
                     <span class="dash__w-text">0</span>
 
-                    <span class="dash__w-name">Wishlist</span></div>
+                    <span class="dash__w-name">Wishlist</span>
+                </div>
             </li>
         </ul>
     </div>

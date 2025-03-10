@@ -16,7 +16,7 @@ from django.contrib import messages
 from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
-from django.utils.encoding import force_bytes, force_text
+from django.utils.encoding import force_bytes, force_str
 from django.views.decorators.http import require_http_methods
 
 from .tokens import account_activation_token, cutomer_account_token
